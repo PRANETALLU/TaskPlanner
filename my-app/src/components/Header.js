@@ -12,9 +12,9 @@ const Header = () => {
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static" sx={{alignItems: "center"}}>
                 <Toolbar>
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1}}>
+                    <a href="/"><Typography variant="h6" component="div" sx={{ flexGrow: 1}}>
                         Task Planner
-                    </Typography>
+                    </Typography></a>
                 </Toolbar>
             </AppBar>
         </Box>

@@ -8,6 +8,7 @@ import './css/Footer.css'
 import Header from './components/Header';
 import Main from './components/Main';
 import Footer from './components/Footer';
+import AddTask from './pages/AddTask';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Main />} />
+          <Route path="/addTask" element={<AddTask />} />
         </Routes>
         <Footer />
       </BrowserRouter>

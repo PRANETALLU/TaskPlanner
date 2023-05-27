@@ -13,19 +13,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import IconButton from '@mui/material/IconButton';
 
-function createData(id, name, deadline, priority) {
-    return { id, name, deadline, priority };
-}
-
-const rows = [
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-    createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-    createData('Eclair', 262, 16.0, 24, 6.0),
-    createData('Cupcake', 305, 3.7, 67, 4.3),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
-
-
 const Main = () => {
     const [tasks, setTasks] = useState([]);
 
@@ -40,23 +27,19 @@ const Main = () => {
         })();
     }, []);
 
-    /*const taskList = tasks.map((task) => {
-
-    });*/
-
     return (
         <div className="Main">
-            <Button variant="contained" endIcon={<AddIcon />} sx={{ backgroundColor: "red" }}>
+            <Button variant="contained" endIcon={<AddIcon />} sx={{ backgroundColor: "red", marginTop: 3, marginBottom: 2, marginLeft: 4 }} href="/addTask">
                 Add
             </Button>
-            <TableContainer component={Paper}>
+            <TableContainer component={Paper} sx={{width: 1400, marginLeft: 4}}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Name</TableCell>
-                            <TableCell align="right">Deadline</TableCell>
-                            <TableCell align="right">Priority</TableCell>
-                            <TableCell align="right">Settings</TableCell>
+                    <TableHead sx={{backgroundColor: "black"}}>
+                        <TableRow sx={{color: "white"}}>
+                            <TableCell sx={{color: "white"}}>Name</TableCell>
+                            <TableCell align="right" sx={{color: "white"}}>Deadline</TableCell>
+                            <TableCell align="right" sx={{color: "white"}}>Priority</TableCell>
+                            <TableCell align="right" sx={{color: "white"}}>Settings</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
