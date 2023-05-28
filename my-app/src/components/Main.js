@@ -13,9 +13,13 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import IconButton from '@mui/material/IconButton';
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import CircularProgress from '@mui/material/CircularProgress';
 
 const Main = () => {
     const [tasks, setTasks] = useState([]);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         (async () => {
@@ -29,19 +33,28 @@ const Main = () => {
         })();
     }, []);
 
+    const deleteTask = async (id) => {
+        console.log("ID " + id);
+        const response = await fetch(`http://localhost:8080/task/${id}`, {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' },
+        });
+    };
+
+
     return (
         <div className="Main">
             <Button variant="contained" endIcon={<AddIcon />} sx={{ backgroundColor: "red", marginTop: 3, marginBottom: 2, marginLeft: 4 }} href="/addTask">
                 Add
             </Button>
-            <TableContainer component={Paper} sx={{width: 1400, marginLeft: 4}}>
+            <TableContainer component={Paper} sx={{ width: 1400, marginLeft: 4 }}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                    <TableHead sx={{backgroundColor: "black"}}>
-                        <TableRow sx={{color: "white"}}>
-                            <TableCell sx={{color: "white"}}>Name</TableCell>
-                            <TableCell align="right" sx={{color: "white"}}>Deadline</TableCell>
-                            <TableCell align="right" sx={{color: "white"}}>Priority</TableCell>
-                            <TableCell align="right" sx={{color: "white"}}></TableCell>
+                    <TableHead sx={{ backgroundColor: "black" }}>
+                        <TableRow sx={{ color: "white" }}>
+                            <TableCell sx={{ color: "white" }}>Name</TableCell>
+                            <TableCell align="right" sx={{ color: "white" }}>Deadline</TableCell>
+                            <TableCell align="right" sx={{ color: "white" }}>Priority</TableCell>
+                            <TableCell align="right" sx={{ color: "white" }}></TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -56,7 +69,7 @@ const Main = () => {
                                 <TableCell align="right">{row.deadline}</TableCell>
                                 <TableCell align="right">{row.priority}</TableCell>
                                 <TableCell align="right">
-                                    <IconButton aria-label="delete" disabled color="primary">
+                                    <IconButton aria-label="delete" sx={{ color: '#ff0000' }} onClick={() => deleteTask(row.id)}>
                                         <DeleteIcon />
                                     </IconButton>
                                     <IconButton color="primary" href={`/editTask/${row.id}`}>
