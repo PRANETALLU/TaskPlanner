@@ -9,6 +9,7 @@ import Header from './components/Header';
 import Main from './components/Main';
 import Footer from './components/Footer';
 import AddTask from './pages/AddTask';
+import EditTask from './pages/EditTask';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/addTask" element={<AddTask />} />
+          <Route path="/editTask/:id" element={<EditTask />} />
         </Routes>
         <Footer />
       </BrowserRouter>

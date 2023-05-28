@@ -12,6 +12,7 @@ import { useState, useEffect } from "react";
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import IconButton from '@mui/material/IconButton';
+import { Link } from "react-router-dom";
 
 const Main = () => {
     const [tasks, setTasks] = useState([]);
@@ -23,6 +24,7 @@ const Main = () => {
                 headers: { 'Content-Type': 'application/json' },
             });
             const data = await response.json();
+            console.log(JSON.stringify(tasks));
             setTasks(data);
         })();
     }, []);
@@ -39,7 +41,7 @@ const Main = () => {
                             <TableCell sx={{color: "white"}}>Name</TableCell>
                             <TableCell align="right" sx={{color: "white"}}>Deadline</TableCell>
                             <TableCell align="right" sx={{color: "white"}}>Priority</TableCell>
-                            <TableCell align="right" sx={{color: "white"}}>Settings</TableCell>
+                            <TableCell align="right" sx={{color: "white"}}></TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -57,7 +59,7 @@ const Main = () => {
                                     <IconButton aria-label="delete" disabled color="primary">
                                         <DeleteIcon />
                                     </IconButton>
-                                    <IconButton color="primary">
+                                    <IconButton color="primary" href={`/editTask/${row.id}`}>
                                         <EditIcon />
                                     </IconButton>
                                 </TableCell>
